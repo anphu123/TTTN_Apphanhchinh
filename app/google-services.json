@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "584981965998",
+    "project_id": "tttn-ce6f2",
+    "storage_bucket": "tttn-ce6f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584981965998:android:084fc8df0aabe577e8513f",
+        "android_client_info": {
+          "package_name": "com.example.tttn_apphanhchinh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8eOtAti3dskFL1QEqdj5rI6zSGD3EI_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

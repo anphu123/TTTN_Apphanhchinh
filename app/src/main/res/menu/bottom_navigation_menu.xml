@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/ic_home"
+
+        android:title="1"/>
+    <item android:id="@+id/ic_manga"
+
+        android:title="2"/>
+    <item android:id="@+id/ic_menubook"
+
+        android:title="3"/>
+    <item android:id="@+id/ic_user"
+
+        android:title="4"/>
+</menu>
