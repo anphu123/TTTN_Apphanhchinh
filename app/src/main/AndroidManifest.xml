@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TTTN_Apphanhchinh"
         tools:targetApi="31">
         <activity
+            android:name=".ToaActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardGvActivity"
             android:exported="false" />
         <activity

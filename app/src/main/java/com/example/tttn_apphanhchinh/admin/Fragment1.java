@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.tttn_apphanhchinh.DashboardAdminActivity;
 import com.example.tttn_apphanhchinh.R;
+import com.example.tttn_apphanhchinh.ToaActivity;
 import com.example.tttn_apphanhchinh.UserAddActivity;
 import com.example.tttn_apphanhchinh.databinding.Fragment1Binding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,10 +26,16 @@ public class Fragment1 extends Fragment {
         // Init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
 
-        binding.addCategoryBtn.setOnClickListener(new View.OnClickListener() {
+        binding.addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), UserAddActivity.class)); // Sửa tại đây
+            }
+        });
+        binding.addToa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity((new Intent(getContext(), ToaActivity.class)));
             }
         });
         return binding.getRoot();
