@@ -1,6 +1,6 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#FFFFFF" /> <!-- Màu nền -->
-    <corners android:radius="12dp" />
+
     <!-- Điều chỉnh độ cong của góc -->
 </shape>

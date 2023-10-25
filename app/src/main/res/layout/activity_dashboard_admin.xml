@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/back01"
     tools:context=".DashboardAdminActivity">
 
 
@@ -19,9 +20,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:layout_gravity="bottom"
-        android:layout_margin="10dp"
         android:background="@drawable/bottom_nav_rounded"
         android:elevation="15dp"
         app:itemIconTint="@color/color_navigation"
