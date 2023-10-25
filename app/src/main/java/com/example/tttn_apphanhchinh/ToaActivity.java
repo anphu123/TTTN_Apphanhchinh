@@ -9,23 +9,28 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.tttn_apphanhchinh.adapter.AdapterToa;
 import com.example.tttn_apphanhchinh.databinding.ActivityToaBinding;
+import com.example.tttn_apphanhchinh.model.ModelToa;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ToaActivity extends AppCompatActivity {
-    private String nameToa = "";
     private ActivityToaBinding binding;
     private FirebaseAuth firebaseAuth;
 
-    //progress dialog
+    // Progress dialog
     private ProgressDialog progressDialog;
     private ArrayList<ModelToa> toaArrayList;
     private AdapterToa adapterToa;
@@ -38,6 +43,7 @@ public class ToaActivity extends AppCompatActivity {
 
         // Khởi tạo Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
+        initToaRecyclerView();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
@@ -46,70 +52,81 @@ public class ToaActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(v -> onBackPressed());
 
         // Xử lý sự kiện khi nhấn nút đăng ký
-        binding.submitToaBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateData();
-            }
-        });
-
+        binding.submitToaBtn.setOnClickListener(v -> validateData());
     }
 
-    private String Toa = "";
-
     private void validateData() {
+        // Lấy dữ liệu từ trường nhập tòa
+        String toa = binding.nameToaEt.getText().toString().trim();
 
-        /*Before adding validate data*/
-
-        //get data
-        Toa = binding.nameToaEt.getText().toString().trim();
-        if (TextUtils.isEmpty(Toa)) {
-            Toast.makeText(this, "Please enter category", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(toa)) {
+            // Hiển thị thông báo lỗi nếu trường tòa trống
+            Toast.makeText(this, "Vui lòng nhập tòa", Toast.LENGTH_SHORT).show();
         } else {
-            addCategoryFirebase();
+            // Thêm tòa vào Firebase
+            addToaToFirebase(toa);
         }
     }
 
-    private void addCategoryFirebase() {
-        //show progress
-        progressDialog.setMessage("Adding category ...");
+    private void addToaToFirebase(String toa) {
+        // Hiển thị progress dialog
+        progressDialog.setMessage("Đang thêm tòa...");
         progressDialog.show();
 
-        //get timestamp
 
-        long timestamp = System.currentTimeMillis();
 
-        //setup info to add firebase db
-
+        // Thiết lập thông tin để thêm vào Firebase DB
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("id", "" + timestamp);
-        hashMap.put("Toa", "" + Toa);
-        hashMap.put("timestamp", timestamp);
+
+        hashMap.put("nameToa", toa);
 
 
-        //add to firebase db .... Database Root > Category > categoryId > category info
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tòa");
-        ref.child("" + timestamp)
+        // Thêm vào Firebase DB: Database Root > Toa > toaId > toa info
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Toa");
+        ref.child("" )
                 .setValue(hashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        //category add success
-                        progressDialog.dismiss();
-                        Toast.makeText(ToaActivity.this, "Category added successfully...", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ToaActivity.this, DashboardAdminActivity.class));
-                    }
+                .addOnSuccessListener(unused -> {
+                    // Thêm thành công
+                    progressDialog.dismiss();
+                    Toast.makeText(ToaActivity.this, "Đã thêm tòa thành công.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ToaActivity.this, DashboardAdminActivity.class));
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //category add failed
-                        progressDialog.dismiss();
-                        Toast.makeText(ToaActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> {
+                    // Thêm thất bại
+                    progressDialog.dismiss();
+                    Toast.makeText(ToaActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
     }
 
+    private void initToaRecyclerView() {
+        // Khởi tạo ArrayList để chứa danh sách tòa
+        toaArrayList = new ArrayList<>();
+
+        // Lấy danh sách tòa từ Firebase: Database Root > Toa
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Toa");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Xóa dữ liệu cũ trong ArrayList trước khi thêm dữ liệu mới
+                toaArrayList.clear();
+
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    // Lấy dữ liệu từ Firebase
+                    ModelToa toa = ds.getValue(ModelToa.class);
+                    // Thêm vào ArrayList
+                    toaArrayList.add(toa);
+                }
+
+                // Khởi tạo adapter và thiết lập cho RecyclerView
+                adapterToa = new AdapterToa(ToaActivity.this, toaArrayList);
+                binding.categoriesRv.setLayoutManager(new LinearLayoutManager(ToaActivity.this));
+                binding.categoriesRv.setAdapter(adapterToa);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xảy ra lỗi
+            }
+        });
+    }
 }

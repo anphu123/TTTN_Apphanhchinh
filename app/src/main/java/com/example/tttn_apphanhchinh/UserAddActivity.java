@@ -1,5 +1,6 @@
 package com.example.tttn_apphanhchinh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -10,11 +11,17 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
+import com.example.tttn_apphanhchinh.adapter.AdapterToa;
 import com.example.tttn_apphanhchinh.databinding.ActivityUserAddBinding;
+import com.example.tttn_apphanhchinh.model.ModelToa;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UserAddActivity extends AppCompatActivity {
@@ -27,6 +34,8 @@ public class UserAddActivity extends AppCompatActivity {
 
     //progress dialog
     private ProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,4 +179,5 @@ public class UserAddActivity extends AppCompatActivity {
                     Toast.makeText(UserAddActivity.this, "Data failed adding to database: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
 }
