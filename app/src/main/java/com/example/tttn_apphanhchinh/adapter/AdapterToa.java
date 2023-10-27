@@ -36,39 +36,30 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
     }
 
     private RowCategoryBinding binding;
-
-    // instance of our filter class
     private FilterToa filter;
 
     @NonNull
     @Override
     public HolderToa onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // binding row_category.xml
         binding = RowCategoryBinding.inflate(LayoutInflater.from(context), parent, false);
         return new HolderToa(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull HolderToa holder, int position) {
-        // get data
         ModelToa model = toaArrayList.get(position);
         String toa = model.getToa();
-
-        // set data
         holder.categoryTV.setText(toa);
 
-        // handle click, delete toa
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // confirm delete dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Delete")
+                builder.setTitle("Xóa tòa")
                         .setMessage("Bạn có muốn xóa tòa này?")
                         .setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // begin delete
                                 Toast.makeText(context, "Đang xóa...", Toast.LENGTH_SHORT).show();
                                 deleteToa(model);
                             }
@@ -76,7 +67,7 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
                         .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // User canceled the delete action
+                                // Người dùng hủy bỏ việc xóa tòa
                             }
                         }).show();
             }
@@ -84,24 +75,19 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
     }
 
     private void deleteToa(ModelToa model) {
-        // get id of toa to delete
         String id = model.getId();
-
-        // Firebase DB > Toa > toaId
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Toa");
         ref.child(id)
                 .removeValue()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        // delete successfully
                         Toast.makeText(context, "Xóa thành công.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(Exception e) {
-                        // failed to delete
                         Toast.makeText(context, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -121,13 +107,11 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
     }
 
     class HolderToa extends RecyclerView.ViewHolder {
-        // UI views of row_category.xml
         TextView categoryTV;
         ImageButton deleteBtn;
 
         public HolderToa(@NonNull View itemView) {
             super(itemView);
-            // initialize UI views
             categoryTV = binding.categoryTv;
             deleteBtn = binding.deleteBtn;
         }
