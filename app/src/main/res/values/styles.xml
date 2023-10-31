@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CUSTOM STYLE TEXT  -->
+    <style name="textLight">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="fontWeight">400</item>
+    </style>
+
+
+
+
+
+
+    <!-- CUSTOM STYLE BUTTON -->
+    <style name="buttonPrimary">
+        <item name="background">@drawable/background_button</item>
+    </style>
+</resources>

@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.tttn_apphanhchinh.admin.Fragment1;
 import com.example.tttn_apphanhchinh.admin.Fragment2;
 import com.example.tttn_apphanhchinh.admin.Fragment3;
+import com.example.tttn_apphanhchinh.admin.SettingFragment;
 import com.example.tttn_apphanhchinh.databinding.ActivityDashboardAdminBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -39,8 +40,8 @@ public class DashboardAdminActivity extends AppCompatActivity {
                 replaceFragment(new Fragment2());
             } else if (item.getItemId() == R.id.ic_menubook) {
                 replaceFragment(new Fragment3());
-            } else if (item.getItemId() == R.id.ic_user) {
-//                replaceFragment(new PersonFragment());
+            } else if (item.getItemId() == R.id.ic_setting) {
+               replaceFragment(new SettingFragment());
             }
             return true;
         });

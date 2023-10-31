@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/ic_home"
         android:icon="@drawable/baseline_home_24"
-        android:title=""/>
+        android:title="Trang chủ"/>
     <item android:id="@+id/ic_manga"
-
-        android:title="2"/>
+        android:icon="@drawable/baseline_replay_24"
+        android:title="Lịch sử"/>
     <item android:id="@+id/ic_menubook"
-
-        android:title="3"/>
-    <item android:id="@+id/ic_user"
-
-        android:title="4"/>
+        android:icon="@drawable/baseline_local_phone_24"
+        android:title="Liên hệ"/>
+    <item android:id="@+id/ic_setting"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Cài đặt"/>
 </menu>
