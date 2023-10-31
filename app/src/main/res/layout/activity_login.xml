@@ -18,12 +18,12 @@
 
 
     <RelativeLayout
-        android:elevation="20dp"
         android:id="@+id/rectangle_2"
         android:layout_width="301dp"
         android:layout_height="507dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/rectangle_1">
+        android:background="@drawable/rectangle_1"
+        android:elevation="20dp">
 
         <ImageView
             android:id="@+id/logo"

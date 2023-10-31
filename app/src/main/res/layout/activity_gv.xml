@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F0"
+    tools:context=".gvACtivity">
+
+
+        <TextView
+        android:id="@+id/rectangle_3"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/rectangle_3" />
+
+    <TextView
+
+        android:layout_width="400dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="69dp"
+        android:drawableLeft="@drawable/ic_avt"
+        android:text="Nguyễn Trung Hải"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rectangle_2"
+        android:layout_width="410dp"
+        android:layout_height="781dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="131dp"
+
+        android:background="@drawable/rectangle_1"
+        android:elevation="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:text="Dịch vụ trực tuyên"
+                android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+            <Button
+                android:layout_width="400dp"
+                android:layout_height="69dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="#D6D0CB"
+                android:text="Báo cáo sự cố"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_edit"
+                 app:backgroundTint="@null" />
+            <Button
+                android:layout_width="400dp"
+                android:layout_height="69dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="#D6D0CB"
+                android:text="Yêu cầu hỗ trợ CNTT"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_square"
+                app:backgroundTint="@null" /> <Button
+            android:layout_width="400dp"
+            android:layout_height="69dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#D6D0CB"
+            android:text="Quản Lý mượn Phòng Học, Hội trường"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_solid"
+            app:backgroundTint="@null" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
