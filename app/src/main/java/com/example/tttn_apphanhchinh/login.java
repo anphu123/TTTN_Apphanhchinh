@@ -142,7 +142,7 @@ public class login extends AppCompatActivity {
                         // check user type
                         if (userType.equals("Giáo viên")) {
                             // giáo viên đăng nhập , chuyển sang màn hình của gv
-                            startActivity(new Intent(login.this, DashboardGvActivity.class));
+//                            startActivity(new Intent(login.this, DashboardGvActivity.class));
                             finish();
                         } else if (userType.equals("Quản trị viên")) {
                             // quản trị viên đăng nhập, chuyển sang màn hình của quản trị viên
