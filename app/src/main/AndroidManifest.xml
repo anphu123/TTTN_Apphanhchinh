@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,13 +22,19 @@
         android:theme="@style/Theme.TTTN_Apphanhchinh"
         tools:targetApi="31">
         <activity
+            android:name=".NotifiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivitySuco"
+            android:exported="false" />
+        <activity
             android:name=".ToaActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardGvActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardNvActivity"
+            android:name=".login"
             android:exported="false" />
         <activity
             android:name=".UserAddActivity"
@@ -38,7 +46,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".DashboardNvActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
