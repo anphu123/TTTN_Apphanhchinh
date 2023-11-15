@@ -1,7 +1,5 @@
 package com.example.tttn_apphanhchinh;
 
-import static java.security.AccessController.getContext;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,37 +46,37 @@ public class ToaActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
         binding.backBtn.setOnClickListener(v -> onBackPressed());
-        binding.submitToaBtn.setOnClickListener(v -> validateData());
-        binding.submitToaBtn.setOnClickListener(new View.OnClickListener() {
+        binding.submitToaBtn.setOnClickListener(v -> validateDataAndAddToFirebase());
+        binding.addtangBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-               startActivity(new Intent(ToaActivity.this, TangActivity.class));
+            public void onClick(View v) {
+                startActivity(new Intent(ToaActivity.this, TangActivity.class)); // Sửa tại đây
             }
         });
     }
 
-    private String toa = "";
+    private void validateDataAndAddToFirebase() {
+        String toa = binding.nameToaEt.getText().toString().trim();
 
-    private void validateData() {
-        toa = binding.nameToaEt.getText().toString().trim();
         if (TextUtils.isEmpty(toa)) {
             Toast.makeText(this, "Vui lòng nhập tòa", Toast.LENGTH_SHORT).show();
         } else {
-            addToaToFirebase();
+            addToaToFirebase(toa);
         }
     }
 
-    private void addToaToFirebase() {
+    private void addToaToFirebase(String toa) {
         progressDialog.setMessage("Đang thêm tòa...");
         progressDialog.show();
+
         long timestamp = System.currentTimeMillis();
+        DatabaseReference toaRef = FirebaseDatabase.getInstance().getReference("toa").child(String.valueOf(timestamp));
+
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("id", "" + timestamp);
-        hashMap.put("toa", "" + toa);
+        hashMap.put("toa", toa);
         hashMap.put("timestamp", timestamp);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Toa");
-        ref.child("" + timestamp)
-                .setValue(hashMap)
+
+        toaRef.setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -98,7 +96,7 @@ public class ToaActivity extends AppCompatActivity {
 
     private void initToaRecyclerView() {
         toaArrayList = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Toa");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("toa");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
