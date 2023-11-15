@@ -1,5 +1,7 @@
 package com.example.tttn_apphanhchinh;
 
+import static java.security.AccessController.getContext;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +49,12 @@ public class ToaActivity extends AppCompatActivity {
 
         binding.backBtn.setOnClickListener(v -> onBackPressed());
         binding.submitToaBtn.setOnClickListener(v -> validateData());
+        binding.submitToaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(ToaActivity.this, TangActivity.class));
+            }
+        });
     }
 
     private String toa = "";
