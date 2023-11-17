@@ -22,6 +22,15 @@
         android:theme="@style/Theme.TTTN_Apphanhchinh"
         tools:targetApi="31">
         <activity
+            android:name=".LoaiSuCoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PBActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".TangListActivity"
+            android:exported="false" />
+        <activity
             android:name=".TangActivity"
             android:exported="false" />
         <activity

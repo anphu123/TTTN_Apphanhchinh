@@ -74,6 +74,7 @@ public class ToaActivity extends AppCompatActivity {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("toa", toa);
+        hashMap.put("id", "" + timestamp);
         hashMap.put("timestamp", timestamp);
 
         toaRef.setValue(hashMap)

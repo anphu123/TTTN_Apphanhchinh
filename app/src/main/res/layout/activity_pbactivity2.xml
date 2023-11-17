@@ -1,0 +1,53 @@
+<!-- activity_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".PBActivity2">
+
+    <EditText
+        android:id="@+id/editTextDepartmentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên phòng ban" />
+
+    <EditText
+        android:id="@+id/editTextDepartmentId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextDepartmentName"
+        android:layout_marginTop="16dp"
+        android:hint="ID phòng ban" />
+
+    <EditText
+        android:id="@+id/editTextHeadName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextDepartmentId"
+        android:layout_marginTop="16dp"
+        android:hint="Tên trưởng phòng ban" />
+
+    <EditText
+        android:id="@+id/editTextPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextHeadName"
+        android:layout_marginTop="16dp"
+        android:hint="Số điện thoại trưởng phòng ban" />
+
+    <Button
+        android:id="@+id/btnAddDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPhoneNumber"
+        android:layout_marginTop="16dp"
+        android:text="Thêm phòng ban" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDepartments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAddDepartment"
+        android:layout_marginTop="16dp" />
+</RelativeLayout>

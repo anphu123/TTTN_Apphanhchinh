@@ -3,6 +3,7 @@ package com.example.tttn_apphanhchinh.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tttn_apphanhchinh.TangActivity;
+import com.example.tttn_apphanhchinh.TangListActivity;
 import com.example.tttn_apphanhchinh.databinding.RowCategoryBinding;
 import com.example.tttn_apphanhchinh.model.ModelToa;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,6 +52,7 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
     public void onBindViewHolder(@NonNull HolderToa holder, int position) {
         ModelToa model = toaArrayList.get(position);
         String toa = model.getToa();
+        String id = model.getId();
         holder.categoryTV.setText(toa);
 
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +76,18 @@ public class AdapterToa extends RecyclerView.Adapter<AdapterToa.HolderToa> imple
                         }).show();
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, TangListActivity.class);
+
+                intent.putExtra("id",id);
+                context.startActivity(intent);
+            }
+        });
+
     }
+
 
     private void deleteToa(ModelToa model) {
         String id = model.getId();

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tttn_apphanhchinh.DashboardAdminActivity;
+import com.example.tttn_apphanhchinh.PBActivity2;
 import com.example.tttn_apphanhchinh.R;
 import com.example.tttn_apphanhchinh.ToaActivity;
 import com.example.tttn_apphanhchinh.UserAddActivity;
@@ -38,8 +39,15 @@ public class Fragment1 extends Fragment {
                 startActivity((new Intent(getContext(), ToaActivity.class)));
             }
         });
+        binding.addPB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PBActivity2.class));
+            }
+        });
         return binding.getRoot();
     }
+
 }
 
 

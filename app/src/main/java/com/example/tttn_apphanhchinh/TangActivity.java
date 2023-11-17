@@ -82,8 +82,8 @@ public class TangActivity extends AppCompatActivity {
         DatabaseReference toaRef = FirebaseDatabase.getInstance().getReference("Tang").child(String.valueOf(timestamp));
 
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("Tầng", tang);
-        hashMap.put("Tòa ",selectedToaTitle);
+        hashMap.put("Tang", tang);
+        hashMap.put("toa ",selectedToaTitle);
         hashMap.put("timestamp", timestamp);
 
         toaRef.setValue(hashMap)

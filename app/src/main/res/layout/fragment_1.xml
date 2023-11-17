@@ -47,7 +47,21 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_button01"
             android:minHeight="50dp"
-            android:text="+ Thêm tòa"
+            android:text="Tòa"
+            app:backgroundTint="@null"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/addPB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_button01"
+            android:minHeight="50dp"
+            android:text="phòng ban"
             app:backgroundTint="@null"
             android:textAllCaps="false"
             android:textColor="@color/white" />
